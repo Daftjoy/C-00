@@ -4,5 +4,6 @@
 # include <iostream>
 # include <iomanip>
 # include <limits>
+# include "Contact.hpp"
 
 #endif

@@ -4,6 +4,7 @@ int main()
 {
     std::string opt;
     int exit;
+    //Contact n_contact;
     
     exit = 1;
 
@@ -18,7 +19,9 @@ int main()
             exit = 0;
         }
         else if (opt == "ADD")
+        {
             std::cout << "Ahora te lo hago" << std::endl;
+        }
         else if (opt == "SEARCH")
             std::cout << "Te lo busco" << std::endl;
         else
