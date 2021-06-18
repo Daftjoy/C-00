@@ -37,34 +37,86 @@ void add_contact(Contact list[8], int i)
     std::cout << "Please enter the darkest secret: ";
     std::getline(std::cin, val);
     list[i].set_darkest_secret(val);
-    std::cout << list[i].get_first_name() << std::endl;
-    std::cout << list[i].get_underwear_color() << std::endl;
+}
+
+void print_first(std::string val)
+{
+    int i;
+
+    i = -1;
+    while (++i < 9)
+        std::cout << val[i];
+    std::cout << '.';
+}
+
+void print_info(Contact contact)
+{
+    std::cout << contact.get_first_name() << std::endl;
+    std::cout << contact.get_last_name() << std::endl;
+    std::cout << contact.get_nickname() << std::endl;
+    std::cout << contact.get_login() << std::endl;
+    std::cout << contact.get_postal_address() << std::endl;
+    std::cout << contact.get_email_address() << std::endl;
+    std::cout << contact.get_phone_number() << std::endl;
+    std::cout << contact.get_birthday_date() << std::endl;
+    std::cout << contact.get_favorite_meal() << std::endl;
+    std::cout << contact.get_underwear_color() << std::endl;
+    std::cout << contact.get_darkest_secret() << std::endl;
+
 }
 
 void search_contacts(Contact list[8], int number_contacts)
 {
     int i;
+    int id;
 
     i = -1;
     std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
     while(++i <= number_contacts)
     {
-        std::cout << "|         ";
-        std::cout << i + 1;
+        std::cout << "|         " << i + 1 << "|";
+        if (int(list[i].get_first_name().length()) > 10)
+            print_first(list[i].get_first_name());
+        else
+        {
+            for (int j = 0; j < 10 - int(list[i].get_first_name().length()); j++)
+                std::cout << " ";
+            std::cout << list[i].get_first_name();
+        }
         std::cout << "|";
-        for (int j = 0; j < 10 - int(list[i].get_first_name().length()); j++)
-            std::cout << " ";
-        std::cout << list[i].get_first_name();
+        if (int(list[i].get_last_name().length()) > 10)
+            print_first(list[i].get_last_name());
+        else
+        {
+            for (int j = 0; j < 10 - int(list[i].get_last_name().length()); j++)
+                std::cout << " ";
+            std::cout << list[i].get_last_name();
+        }
         std::cout << "|";
-        for (int j = 0; j < 10 - int(list[i].get_last_name().length()); j++)
-            std::cout << " ";
-        std::cout << list[i].get_last_name();
-        std::cout << "|";
-        for (int j = 0; j < 10 - int(list[i].get_nickname().length()); j++)
-            std::cout << " ";
-        std::cout << list[i].get_nickname();
-        std::cout << "|";
-        std::cout << std::endl;
+        if (int(list[i].get_nickname().length()) > 10)
+            print_first(list[i].get_nickname());
+        else
+        {
+            for (int j = 0; j < 10 - int(list[i].get_nickname().length()); j++)
+                std::cout << " ";
+            std::cout << list[i].get_nickname();
+        }
+        std::cout << "|" << std::endl;
+    }
+    while (1)
+    {
+        std::cout << "Please choose a Contact ID to show info about it or enter 42 to go back to main setup: ";
+        std::cin >> id;
+        if (id == 42)
+        {
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            break;
+        }
+        else if (id > 0 && id <= number_contacts + 1)
+            print_info(list[id - 1]);
+        else
+            std::cout << "Not a valid Index" << std::endl;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');    
     }
 }
 
