@@ -109,13 +109,15 @@ void search_contacts(Contact list[8], int number_contacts)
         std::cin >> id;
         if (id == 42)
         {
+            std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             break;
         }
-        else if (id > 0 && id <= number_contacts + 1)
+        else if (id > 0 && id <= number_contacts + 1 && id != '\n')
             print_info(list[id - 1]);
         else
             std::cout << "Not a valid Index" << std::endl;
+        std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');    
     }
 }
